@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Full Stack Developer specializing in MERN stack — React.js, Node.js, Express.js, MongoDB. 9.3 CGPA from GGSIPU. Building real-time applications and beautiful web experiences.",
   alternates: {
-    canonical: "https://mohd-talish.dev",
+    canonical: "https://mohd-talish-ansari.vercel.app/",
   },
 };
 

@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://mohd-talish.dev/sitemap.xml",
+    sitemap: "https://mohd-talish-ansari.vercel.app//sitemap.xml",
   };
 }

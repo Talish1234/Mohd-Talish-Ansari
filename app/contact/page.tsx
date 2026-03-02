@@ -5,7 +5,7 @@ import { Reveal, Stagger, fadeUp, scaleIn } from "@/components/MotionComponents"
 export const metadata: Metadata = {
   title: "Contact",
   description: "Get in touch with Mohd Talish Ansari — Full Stack Developer. Let's collaborate on your next project.",
-  alternates: { canonical: "https://mohd-talish.dev/contact" },
+  alternates: { canonical: "https://mohd-talish-ansari.vercel.app//contact" },
 };
 
 const contactInfo = [

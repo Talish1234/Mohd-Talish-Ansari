@@ -6,7 +6,7 @@ import ThemeProvider from "@/components/ThemeProvider";
 import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mohd-talish.dev"),
+  metadataBase: new URL("https://mohd-talish-ansari.vercel.app/"),
 
   title: {
     default: "Mohd Talish Ansari | Full Stack Developer",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://mohd-talish.dev",
+    url: "https://mohd-talish-ansari.vercel.app/",
     title: "Mohd Talish Ansari | Full Stack Developer",
     description:
       "Full Stack Developer specializing in MERN stack.",

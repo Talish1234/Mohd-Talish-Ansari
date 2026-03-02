@@ -93,7 +93,7 @@ npm start
 - **Update links**: Edit `components/Navbar.tsx` and `components/Footer.tsx`  
 - **Add/edit projects**: Edit `components/sections/ProjectsSection.tsx`
 - **Update skills**: Edit `components/sections/SkillsSection.tsx`
-- **Change domain**: Update all `https://mohd-talish.dev` references in `app/layout.tsx`, `app/sitemap.ts`
+- **Change domain**: Update all `https://mohd-talish-ansari.vercel.app/` references in `app/layout.tsx`, `app/sitemap.ts`
 - **OpenGraph image**: Add an image at `public/og-image.png` (1200×630px)
 
 ## 📦 Tech Stack
