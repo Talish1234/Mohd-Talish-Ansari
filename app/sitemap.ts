@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: "https://mohd-talish-ansari.vercel.app//contact",
+      url: "https://mohd-talish-ansari.vercel.app/contact",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
