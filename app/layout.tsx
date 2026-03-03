@@ -5,9 +5,10 @@ import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 import PageTransition from "@/components/PageTransition";
 
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://mohd-talish-ansari.vercel.app/"),
-
+  
   title: {
     default: "Mohd Talish Ansari | Full Stack Developer",
     template: "%s | Mohd Talish Ansari",
@@ -94,7 +95,7 @@ export const metadata: Metadata = {
   },
 
   verification: {
-    google: "your-google-verification-code",
+    google: "YQ2hNYmDvei3AXMsABv7umwq6zPfaf190Vtrngtoyes",
   },
 };
 
