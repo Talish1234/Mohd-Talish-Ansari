@@ -32,11 +32,80 @@ const certs = [
   },
 ];
 
+// Tracks per-image load state
+function CertImage({
+  src,
+  alt,
+  className,
+  onClick,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  onClick?: () => void;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className={`relative w-full h-full ${onClick ? "cursor-pointer" : ""}`} onClick={onClick}>
+      {/* Blur placeholder — visible until image loads */}
+      <AnimatePresence>
+        {!loaded && (
+          <motion.div
+            key="blur-placeholder"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-0 flex items-center justify-center"
+          >
+            {/* Shimmer / blur skeleton */}
+            <div
+              className="w-full h-full rounded-lg"
+              style={{
+                background:
+                  "linear-gradient(120deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.04) 100%)",
+                backgroundSize: "200% 100%",
+                animation: "shimmer 1.5s infinite",
+                filter: "blur(1px)",
+              }}
+            />
+            {/* Blurred ghost of the image itself */}
+            <img
+              src={src}
+              alt=""
+              aria-hidden
+              className="absolute inset-0 w-full h-full object-contain p-4 blur-xl scale-105 opacity-40 select-none pointer-events-none"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Actual image */}
+      <motion.img
+        src={src}
+        alt={alt}
+        onLoad={() => setLoaded(true)}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: loaded ? 1 : 0 }}
+        transition={{ duration: 0.4 }}
+        className={className}
+      />
+
+      <style>{`
+        @keyframes shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export default function CertificationsSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedCert, setSelectedCert] = useState<number>(0);
 
- const modal = (
+  const modal = (
     <AnimatePresence>
       {selectedCert > 0 && (
         <motion.div
@@ -65,11 +134,15 @@ export default function CertificationsSection() {
             >
               ✕
             </motion.button>
-            <img
-              src={certs[selectedCert - 1]?.image}
-              alt="Selected certificate"
-              className="max-w-[90vw] max-h-[90vh] object-contain rounded-xl shadow-2xl"
-            />
+
+            {/* Modal image with blur-in loader */}
+            <div className="max-w-[90vw] max-h-[90vh] rounded-xl shadow-2xl overflow-hidden">
+              <CertImage
+                src={certs[selectedCert - 1]?.image}
+                alt="Selected certificate"
+                className="max-w-[90vw] max-h-[90vh] object-contain rounded-xl"
+              />
+            </div>
           </motion.div>
         </motion.div>
       )}
@@ -117,12 +190,15 @@ export default function CertificationsSection() {
                       className="absolute inset-0 rounded-2xl overflow-hidden z-10"
                     >
                       <div className="absolute inset-0 bg-black/5 backdrop-blur-sm" />
-                      <img
-                        onClick={() => setSelectedCert(i + 1)}
-                        src={c.image}
-                        alt={`${c.title} certificate`}
-                        className="absolute inset-0 w-full h-full object-contain p-4"
-                      />
+                      {/* Card overlay image with blur loader */}
+                      <div className="absolute inset-0 p-4">
+                        <CertImage
+                          src={c.image}
+                          alt={`${c.title} certificate`}
+                          className="w-full h-full object-contain"
+                          onClick={() => setSelectedCert(i + 1)}
+                        />
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
